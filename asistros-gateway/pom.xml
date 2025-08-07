@@ -12,15 +12,17 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>com.ganaderia</groupId>
+	<groupId>com.contaduria</groupId>
 	<artifactId>gateway-service</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-	<name>Gateway Service</name>
+	<name>Contaduria Gateway Service</name>
+	<description>Gateway para sistema de contaduría pública</description>
 
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
+		<jwt.version>0.11.5</jwt.version>
 	</properties>
 
 	<dependencies>
@@ -30,35 +32,42 @@
 			<artifactId>spring-cloud-starter-gateway</artifactId>
 		</dependency>
 
-		<!-- Spring Boot Web (para controllers) -->
+		<!-- Spring Boot WebFlux (requerido por Gateway) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 
-		<!-- JWT (para validar tokens) -->
+		<!-- JWT para validación de tokens -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
+			<version>${jwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.5</version>
+			<version>${jwt.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.5</version>
+			<version>${jwt.version}</version>
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- Actuator (para health checks) -->
+		<!-- Actuator para monitoreo -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

@@ -1,0 +1,129 @@
+package com.contaduria.auth.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+
+import java.time.LocalDate;
+import java.util.List;
+
+/**
+ * Entidad que representa a un empleado del sistema
+ * Mapea directamente a la tabla 'empleados' existente
+ */
+@Entity
+@Table(name = "empleados")
+public class Empleado {
+
+    @Id
+    @Column(name = "idempleados")
+    private Long idEmpleados;
+
+    @Column(name = "personas_idpersonas", nullable = false)
+    @NotNull(message = "La persona es requerida")
+    private Long personasIdPersonas;
+
+    @Column(name = "cat_puestos_idpuestos", nullable = false)
+    @NotNull(message = "El puesto es requerido")
+    private Long catPuestosIdPuestos;
+
+    @Column(name = "telefono", nullable = false)
+    @NotNull(message = "El teléfono es requerido")
+    private String telefono;
+
+    @Column(name = "salario", nullable = false)
+    @NotNull(message = "El salario es requerido")
+    private Integer salario;
+
+    @Column(name = "estado", nullable = false)
+    @NotNull(message = "El estado es requerido")
+    private Integer estado;
+
+    @Column(name = "fechaDesde", nullable = false)
+    @NotNull(message = "La fecha de inicio es requerida")
+    private LocalDate fechaDesde;
+
+    @Column(name = "fechaFin", nullable = false)
+    private LocalDate fechaFin;
+
+    @Column(name = "fechaNac", nullable = false)
+    @NotNull(message = "La fecha de nacimiento es requerida")
+    private LocalDate fechaNac;
+
+    @Column(name = "calcularIps", nullable = false)
+    private Boolean calcularIps = false;
+
+    @Column(name = "sobreMinimo", nullable = false)
+    private Integer sobreMinimo = 0;
+
+    @Column(name = "calcularAguinaldo")
+    private Boolean calcularAguinaldo = false;
+
+    @Column(name = "verTodosClientes")
+    private Boolean verTodosClientes = false;
+
+    // Relaciones
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "personas_idpersonas", insertable = false, updatable = false)
+    private Persona persona;
+
+    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
+    private List<Usuario> usuarios;
+
+    // Constructores
+    public Empleado() {}
+
+    // Métodos de utilidad
+    public boolean estaActivo() {
+        return estado == 1;
+    }
+
+    public boolean puedeVerTodosLosClientes() {
+        return Boolean.TRUE.equals(verTodosClientes);
+    }
+
+    // Getters y Setters
+    public Long getIdEmpleados() { return idEmpleados; }
+    public void setIdEmpleados(Long idEmpleados) { this.idEmpleados = idEmpleados; }
+
+    public Long getPersonasIdPersonas() { return personasIdPersonas; }
+    public void setPersonasIdPersonas(Long personasIdPersonas) { this.personasIdPersonas = personasIdPersonas; }
+
+    public Long getCatPuestosIdPuestos() { return catPuestosIdPuestos; }
+    public void setCatPuestosIdPuestos(Long catPuestosIdPuestos) { this.catPuestosIdPuestos = catPuestosIdPuestos; }
+
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+
+    public Integer getSalario() { return salario; }
+    public void setSalario(Integer salario) { this.salario = salario; }
+
+    public Integer getEstado() { return estado; }
+    public void setEstado(Integer estado) { this.estado = estado; }
+
+    public LocalDate getFechaDesde() { return fechaDesde; }
+    public void setFechaDesde(LocalDate fechaDesde) { this.fechaDesde = fechaDesde; }
+
+    public LocalDate getFechaFin() { return fechaFin; }
+    public void setFechaFin(LocalDate fechaFin) { this.fechaFin = fechaFin; }
+
+    public LocalDate getFechaNac() { return fechaNac; }
+    public void setFechaNac(LocalDate fechaNac) { this.fechaNac = fechaNac; }
+
+    public Boolean getCalcularIps() { return calcularIps; }
+    public void setCalcularIps(Boolean calcularIps) { this.calcularIps = calcularIps; }
+
+    public Integer getSobreMinimo() { return sobreMinimo; }
+    public void setSobreMinimo(Integer sobreMinimo) { this.sobreMinimo = sobreMinimo; }
+
+    public Boolean getCalcularAguinaldo() { return calcularAguinaldo; }
+    public void setCalcularAguinaldo(Boolean calcularAguinaldo) { this.calcularAguinaldo = calcularAguinaldo; }
+
+    public Boolean getVerTodosClientes() { return verTodosClientes; }
+    public void setVerTodosClientes(Boolean verTodosClientes) { this.verTodosClientes = verTodosClientes; }
+
+    public Persona getPersona() { return persona; }
+    public void setPersona(Persona persona) { this.persona = persona; }
+
+    public List<Usuario> getUsuarios() { return usuarios; }
+    public void setUsuarios(List<Usuario> usuarios) { this.usuarios = usuarios; }
+}
