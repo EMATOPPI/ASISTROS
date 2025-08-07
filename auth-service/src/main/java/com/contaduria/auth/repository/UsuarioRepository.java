@@ -15,7 +15,7 @@ import java.util.Optional;
  * Incluye consultas personalizadas para autenticación y seguridad
  */
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     /**
      * Busca un usuario por su nombre de usuario
@@ -43,7 +43,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
      * @param idEmpleados ID del empleado
      * @return Lista de usuarios del empleado
      */
-    List<Usuario> findByIdEmpleados(Long idEmpleados);
+    List<Usuario> findByIdEmpleados(Integer idEmpleados);
 
     /**
      * Busca usuarios activos
@@ -94,7 +94,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
      * Cuenta usuarios activos
      * @return Número total de usuarios activos
      */
-    long countByActivoTrue();
+    Integer countByActivoTrue();
 
     /**
      * Busca usuarios bloqueados en una fecha específica

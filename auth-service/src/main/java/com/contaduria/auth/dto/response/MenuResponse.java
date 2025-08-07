@@ -5,7 +5,7 @@ package com.contaduria.auth.dto.response;
  */
 public class MenuResponse {
 
-    private Long idMenus;
+    private Integer idMenus;
     private String nombre;
     private String descripcion;
     private String url;
@@ -16,7 +16,7 @@ public class MenuResponse {
     // Constructores
     public MenuResponse() {}
 
-    public MenuResponse(Long idMenus, String nombre, String url, Boolean puedeVer) {
+    public MenuResponse(Integer idMenus, String nombre, String url, Boolean puedeVer) {
         this.idMenus = idMenus;
         this.nombre = nombre;
         this.url = url;
@@ -24,8 +24,8 @@ public class MenuResponse {
     }
 
     // Getters y Setters
-    public Long getIdMenus() { return idMenus; }
-    public void setIdMenus(Long idMenus) { this.idMenus = idMenus; }
+    public Integer getIdMenus() { return idMenus; }
+    public void setIdMenus(Integer idMenus) { this.idMenus = idMenus; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

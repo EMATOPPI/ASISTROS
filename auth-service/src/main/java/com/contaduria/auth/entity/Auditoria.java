@@ -1,6 +1,8 @@
 package com.contaduria.auth.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+
 import java.time.LocalDateTime;
 
 /**
@@ -14,10 +16,10 @@ public class Auditoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idauditoria")
-    private Long idAuditoria;
+    private Integer idAuditoria;
 
     @Column(name = "usuarios_idusuarios", nullable = false)
-    private Long usuariosIdUsuarios;
+    private Integer usuariosIdUsuarios;
 
     @Column(name = "tabla")
     private String tabla;
@@ -49,7 +51,7 @@ public class Auditoria {
         this.fecha = LocalDateTime.now().toString(); // Para compatibilidad
     }
 
-    public Auditoria(Long usuariosIdUsuarios, String tabla, String proceso, String detalle) {
+    public Auditoria(Integer usuariosIdUsuarios, String tabla, String proceso, String detalle) {
         this();
         this.usuariosIdUsuarios = usuariosIdUsuarios;
         this.tabla = tabla;
@@ -58,11 +60,11 @@ public class Auditoria {
     }
 
     // Getters y Setters
-    public Long getIdAuditoria() { return idAuditoria; }
-    public void setIdAuditoria(Long idAuditoria) { this.idAuditoria = idAuditoria; }
+    public Integer getIdAuditoria() { return idAuditoria; }
+    public void setIdAuditoria(Integer idAuditoria) { this.idAuditoria = idAuditoria; }
 
-    public Long getUsuariosIdUsuarios() { return usuariosIdUsuarios; }
-    public void setUsuariosIdUsuarios(Long usuariosIdUsuarios) { this.usuariosIdUsuarios = usuariosIdUsuarios; }
+    public Integer getUsuariosIdUsuarios() { return usuariosIdUsuarios; }
+    public void setUsuariosIdUsuarios(Integer usuariosIdUsuarios) { this.usuariosIdUsuarios = usuariosIdUsuarios; }
 
     public String getTabla() { return tabla; }
     public void setTabla(String tabla) { this.tabla = tabla; }

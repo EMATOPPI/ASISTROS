@@ -31,10 +31,10 @@ public class JwtService {
     private String jwtSecret;
 
     @Value("${app.jwt.expiration}")
-    private Long jwtExpiration;
+    private Integer jwtExpiration;
 
     @Value("${app.jwt.refresh-expiration}")
-    private Long refreshExpiration;
+    private Integer refreshExpiration;
 
     /**
      * Obtiene la clave de firma para los tokens
@@ -169,9 +169,9 @@ public class JwtService {
      * @param token Token del cual extraer el ID
      * @return ID del usuario
      */
-    public Long extraerUsuarioId(String token) {
+    public Integer extraerUsuarioId(String token) {
         Claims claims = extraerClaims(token);
-        return Long.valueOf(claims.get("usuarioId", Integer.class));
+        return Integer.valueOf(claims.get("usuarioId", Integer.class));
     }
 
     /**
@@ -179,9 +179,9 @@ public class JwtService {
      * @param token Token del cual extraer el ID
      * @return ID del empleado
      */
-    public Long extraerEmpleadoId(String token) {
+    public Integer extraerEmpleadoId(String token) {
         Claims claims = extraerClaims(token);
-        return Long.valueOf(claims.get("empleadoId", Integer.class));
+        return Integer.valueOf(claims.get("empleadoId", Integer.class));
     }
 
     /**
@@ -248,7 +248,7 @@ public class JwtService {
      * Obtiene el tiempo de expiración configurado
      * @return Tiempo de expiración en milisegundos
      */
-    public Long obtenerTiempoExpiracion() {
+    public Integer obtenerTiempoExpiracion() {
         return jwtExpiration;
     }
 

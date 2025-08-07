@@ -14,7 +14,7 @@ import java.util.Optional;
  * Repositorio para manejo de datos de empleados
  */
 @Repository
-public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
+public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
 
     /**
      * Busca empleados activos (estado = 1)
@@ -28,7 +28,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
      * @param personaId ID de la persona
      * @return Empleado encontrado o vacío
      */
-    Optional<Empleado> findByPersonasIdPersonas(Long personaId);
+    Optional<Empleado> findByPersonasIdPersonas(Integer personaId);
 
     /**
      * Busca empleados con información completa de persona
@@ -48,7 +48,7 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
      * @param puestoId ID del puesto
      * @return Lista de empleados del puesto
      */
-    List<Empleado> findByCatPuestosIdPuestos(Long puestoId);
+    List<Empleado> findByCatPuestosIdPuestos(Integer puestoId);
 
     /**
      * Busca empleados contratados en un período

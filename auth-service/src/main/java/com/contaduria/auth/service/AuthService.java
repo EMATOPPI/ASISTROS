@@ -69,7 +69,7 @@ public class AuthService {
 
             // Verificar si la cuenta está activa
             if (!usuario.puedeAcceder()) {
-                auditoriaService.registrarAccesoFallido(usuario.getIdUsuarios(),
+                auditoriaService.registrarAccesoFallido((int) usuario.getIdUsuarios(),
                         "Cuenta inactiva o bloqueada", request.getUsuario());
 
                 if (Boolean.TRUE.equals(usuario.getCuentaBloqueada())) {
@@ -152,8 +152,8 @@ public class AuthService {
             Map<String, Object> info = jwtService.extraerInformacionCompleta(token);
 
             // Verificar que el usuario sigue activo
-            Long usuarioId = (Long) info.get("usuarioId");
-            Usuario usuario = usuarioRepository.findById(usuarioId)
+            Integer usuarioId = (Integer) info.get("usuarioId");
+            Usuario usuario = usuarioRepository.findById(Math.toIntExact(usuarioId))
                     .orElse(null);
 
             if (usuario == null || !usuario.puedeAcceder()) {
@@ -164,7 +164,7 @@ public class AuthService {
                     usuarioId,
                     (String) info.get("usuario"),
                     (String) info.get("nombreCompleto"),
-                    (Long) info.get("empleadoId"),
+                    (Integer) info.get("empleadoId"),
                     (List<String>) info.get("roles"),
                     (List<String>) info.get("permisos"),
                     (Boolean) info.get("puedeVerTodosClientes"),
@@ -221,7 +221,7 @@ public class AuthService {
      * @param usuarioId ID del usuario
      * @param request Datos del cambio de contraseña
      */
-    public void cambiarContrasena(Long usuarioId, CambioContrasenaRequest request) {
+    public void cambiarContrasena(Integer usuarioId, CambioContrasenaRequest request) {
         logger.info("Cambio de contraseña solicitado para usuario ID: {}", usuarioId);
 
         // Validar que las contraseñas coincidan
@@ -260,7 +260,7 @@ public class AuthService {
      * @return Información completa del perfil
      */
     @Transactional(readOnly = true)
-    public PerfilUsuarioResponse obtenerPerfil(Long usuarioId) {
+    public PerfilUsuarioResponse obtenerPerfil(Integer usuarioId) {
         logger.debug("Obteniendo perfil para usuario ID: {}", usuarioId);
 
         Usuario usuario = usuarioRepository.findUsuarioCompletoByUsuario(
@@ -282,7 +282,7 @@ public class AuthService {
      * Desbloquea una cuenta de usuario
      * @param usuarioId ID del usuario a desbloquear
      */
-    public void desbloquearCuenta(Long usuarioId) {
+    public void desbloquearCuenta(Integer usuarioId) {
         logger.info("Desbloqueando cuenta para usuario ID: {}", usuarioId);
 
         Usuario usuario = usuarioRepository.findById(usuarioId)

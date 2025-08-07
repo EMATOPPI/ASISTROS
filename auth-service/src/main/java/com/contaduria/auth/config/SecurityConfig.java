@@ -41,8 +41,12 @@ public class SecurityConfig {
                                 "/api/auth/login",
                                 "/api/auth/renovar",
                                 "/api/auth/validar",
-                                "/api/auth/health"
+                                "/api/auth/health",
+                                "/api/auth/login-debug"  // AGREGADO TEMPORALMENTE
                         ).permitAll()
+
+                        // ENDPOINTS DE DEBUG - TEMPORALES (ELIMINAR EN PRODUCCIÓN)
+                        .requestMatchers("/api/debug/**").permitAll()
 
                         // Endpoints de administración - requieren rol ADMIN
                         .requestMatchers("/api/auth/admin/**").hasRole("ADMIN")

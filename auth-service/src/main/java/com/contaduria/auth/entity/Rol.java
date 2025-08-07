@@ -16,7 +16,7 @@ public class Rol {
 
     @Id
     @Column(name = "idroles")
-    private Long idRoles;
+    private Integer idRoles;
 
     @Column(name = "nombre", nullable = false)
     @NotBlank(message = "El nombre del rol es requerido")
@@ -52,8 +52,8 @@ public class Rol {
     }
 
     // Getters y Setters
-    public Long getIdRoles() { return idRoles; }
-    public void setIdRoles(Long idRoles) { this.idRoles = idRoles; }
+    public Integer getIdRoles() { return idRoles; }
+    public void setIdRoles(Integer idRoles) { this.idRoles = idRoles; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

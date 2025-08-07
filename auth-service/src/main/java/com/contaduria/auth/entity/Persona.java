@@ -16,7 +16,7 @@ public class Persona {
 
     @Id
     @Column(name = "idpersonas")
-    private Long idPersonas;
+    private Integer idPersonas;
 
     @Column(name = "ciudad")
     @Size(max = 45, message = "La ciudad no puede exceder 45 caracteres")
@@ -81,8 +81,8 @@ public class Persona {
     }
 
     // Getters y Setters
-    public Long getIdPersonas() { return idPersonas; }
-    public void setIdPersonas(Long idPersonas) { this.idPersonas = idPersonas; }
+    public Integer getIdPersonas() { return idPersonas; }
+    public void setIdPersonas(Integer idPersonas) { this.idPersonas = idPersonas; }
 
     public String getCiudad() { return ciudad; }
     public void setCiudad(String ciudad) { this.ciudad = ciudad; }

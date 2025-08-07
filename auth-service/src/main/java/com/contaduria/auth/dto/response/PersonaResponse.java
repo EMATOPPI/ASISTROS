@@ -5,7 +5,7 @@ package com.contaduria.auth.dto.response;
  */
 public class PersonaResponse {
 
-    private Long idPersonas;
+    private Integer idPersonas;
     private String nombre;
     private String apellido;
     private String correo;
@@ -24,8 +24,8 @@ public class PersonaResponse {
     }
 
     // Getters y Setters
-    public Long getIdPersonas() { return idPersonas; }
-    public void setIdPersonas(Long idPersonas) { this.idPersonas = idPersonas; }
+    public Integer getIdPersonas() { return idPersonas; }
+    public void setIdPersonas(Integer idPersonas) { this.idPersonas = idPersonas; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

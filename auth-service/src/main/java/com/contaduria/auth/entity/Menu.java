@@ -16,7 +16,7 @@ public class Menu {
 
     @Id
     @Column(name = "idmenus")
-    private Long idMenus;
+    private Integer idMenus;
 
     @Column(name = "nombre")
     @NotBlank(message = "El nombre del menú es requerido")
@@ -55,8 +55,8 @@ public class Menu {
     }
 
     // Getters y Setters
-    public Long getIdMenus() { return idMenus; }
-    public void setIdMenus(Long idMenus) { this.idMenus = idMenus; }
+    public Integer getIdMenus() { return idMenus; }
+    public void setIdMenus(Integer idMenus) { this.idMenus = idMenus; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

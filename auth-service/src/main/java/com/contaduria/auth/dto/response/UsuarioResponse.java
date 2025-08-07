@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class UsuarioResponse {
 
-    private Long idUsuarios;
+    private Integer idUsuarios;
     private String usuario;
     private String nombreCompleto;
     private String email;
@@ -23,8 +23,8 @@ public class UsuarioResponse {
     public UsuarioResponse() {}
 
     // Getters y Setters
-    public Long getIdUsuarios() { return idUsuarios; }
-    public void setIdUsuarios(Long idUsuarios) { this.idUsuarios = idUsuarios; }
+    public Integer getIdUsuarios() { return idUsuarios; }
+    public void setIdUsuarios(Integer idUsuarios) { this.idUsuarios = idUsuarios; }
 
     public String getUsuario() { return usuario; }
     public void setUsuario(String usuario) { this.usuario = usuario; }

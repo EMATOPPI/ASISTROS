@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class RolResponse {
 
-    private Long idRoles;
+    private Integer idRoles;
     private String nombre;
     private String descripcion;
     private Boolean activo;
@@ -16,15 +16,15 @@ public class RolResponse {
     // Constructores
     public RolResponse() {}
 
-    public RolResponse(Long idRoles, String nombre, String descripcion) {
+    public RolResponse(Integer idRoles, String nombre, String descripcion) {
         this.idRoles = idRoles;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
     // Getters y Setters
-    public Long getIdRoles() { return idRoles; }
-    public void setIdRoles(Long idRoles) { this.idRoles = idRoles; }
+    public Integer getIdRoles() { return idRoles; }
+    public void setIdRoles(Integer idRoles) { this.idRoles = idRoles; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

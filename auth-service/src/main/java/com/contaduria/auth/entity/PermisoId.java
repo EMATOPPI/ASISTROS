@@ -8,18 +8,26 @@ import java.util.Objects;
  */
 public class PermisoId implements Serializable {
 
-    private Long idRoles;
-    private Long idMenus;
+    private Integer idRoles;
+    private Integer idMenus;
 
     // Constructores
     public PermisoId() {}
 
-    public PermisoId(Long idRoles, Long idMenus) {
+    public PermisoId(Integer idRoles, Integer idMenus) {
         this.idRoles = idRoles;
         this.idMenus = idMenus;
     }
 
     // equals y hashCode son requeridos para claves compuestas
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        PermisoId permisoId = (PermisoId) o;
+//        return Objects.equals(idRoles, permisoId.idRoles) &&
+//                Objects.equals(idMenus, permisoId.idMenus);
+//    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,9 +43,9 @@ public class PermisoId implements Serializable {
     }
 
     // Getters y Setters
-    public Long getIdRoles() { return idRoles; }
-    public void setIdRoles(Long idRoles) { this.idRoles = idRoles; }
+    public Integer getIdRoles() { return idRoles; }
+    public void setIdRoles(Integer idRoles) { this.idRoles = idRoles; }
 
-    public Long getIdMenus() { return idMenus; }
-    public void setIdMenus(Long idMenus) { this.idMenus = idMenus; }
+    public Integer getIdMenus() { return idMenus; }
+    public void setIdMenus(Integer idMenus) { this.idMenus = idMenus; }
 }

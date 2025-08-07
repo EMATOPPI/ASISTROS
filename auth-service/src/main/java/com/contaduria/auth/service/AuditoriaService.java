@@ -42,7 +42,7 @@ public class AuditoriaService {
      * @param nombreUsuario Nombre del usuario para log
      */
     @Async
-    public void registrarAccesoExitoso(Long usuarioId, String detalle, String nombreUsuario) {
+    public void registrarAccesoExitoso(Integer usuarioId, String detalle, String nombreUsuario) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -66,10 +66,10 @@ public class AuditoriaService {
      * @param nombreUsuario Nombre del usuario intentado
      */
     @Async
-    public void registrarAccesoFallido(Long usuarioId, String detalle, String nombreUsuario) {
+    public void registrarAccesoFallido(Integer usuarioId, String detalle, String nombreUsuario) {
         try {
             Auditoria registro = new Auditoria();
-            registro.setUsuariosIdUsuarios(usuarioId != null ? usuarioId : 0L); // 0 para usuarios no encontrados
+            registro.setUsuariosIdUsuarios(Math.toIntExact(usuarioId != null ? usuarioId : 0L)); // 0 para usuarios no encontrados
             registro.setTabla("usuarios");
             registro.setProceso("LOGIN_FALLIDO");
             registro.setDetalle("Usuario intentado: " + nombreUsuario + " - " + detalle);
@@ -89,7 +89,7 @@ public class AuditoriaService {
      * @param detalle Detalle del cambio
      */
     @Async
-    public void registrarCambioContrasenaExitoso(Long usuarioId, String detalle) {
+    public void registrarCambioContrasenaExitoso(Integer usuarioId, String detalle) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -112,7 +112,7 @@ public class AuditoriaService {
      * @param detalle Detalle del fallo
      */
     @Async
-    public void registrarCambioContrasenaFallido(Long usuarioId, String detalle) {
+    public void registrarCambioContrasenaFallido(Integer usuarioId, String detalle) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -135,7 +135,7 @@ public class AuditoriaService {
      * @param detalle Detalle del desbloqueo
      */
     @Async
-    public void registrarDesbloqueoCuenta(Long usuarioId, String detalle) {
+    public void registrarDesbloqueoCuenta(Integer usuarioId, String detalle) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -158,7 +158,7 @@ public class AuditoriaService {
      * @param detalle Detalle del logout
      */
     @Async
-    public void registrarLogout(Long usuarioId, String detalle) {
+    public void registrarLogout(Integer usuarioId, String detalle) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -182,7 +182,7 @@ public class AuditoriaService {
      * @param detalle Detalle del acceso
      */
     @Async
-    public void registrarAccesoFuncionalidad(Long usuarioId, String funcionalidad, String detalle) {
+    public void registrarAccesoFuncionalidad(Integer usuarioId, String funcionalidad, String detalle) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -208,7 +208,7 @@ public class AuditoriaService {
      * @param detalle Detalle de la operación
      */
     @Async
-    public void registrarOperacionCRUD(Long usuarioId, String tabla, String operacion, Long entityId, String detalle) {
+    public void registrarOperacionCRUD(Integer usuarioId, String tabla, String operacion, Integer entityId, String detalle) {
         try {
             Auditoria registro = new Auditoria();
             registro.setUsuariosIdUsuarios(usuarioId);
@@ -232,10 +232,10 @@ public class AuditoriaService {
      * @param detalle Detalle del error
      */
     @Async
-    public void registrarError(Long usuarioId, String proceso, String detalle) {
+    public void registrarError(Integer usuarioId, String proceso, String detalle) {
         try {
             Auditoria registro = new Auditoria();
-            registro.setUsuariosIdUsuarios(usuarioId != null ? usuarioId : 0L);
+            registro.setUsuariosIdUsuarios(Math.toIntExact(usuarioId != null ? usuarioId : 0L));
             registro.setTabla("sistema");
             registro.setProceso("ERROR_" + proceso.toUpperCase());
             registro.setDetalle(detalle);
@@ -260,9 +260,9 @@ public class AuditoriaService {
      * @return Página de registros de auditoría
      */
     @Transactional(readOnly = true)
-    public Page<Auditoria> obtenerHistorialUsuario(Long usuarioId, Pageable pageable) {
+    public Page<Auditoria> obtenerHistorialUsuario(Integer usuarioId, Pageable pageable) {
         logger.debug("Obteniendo historial de auditoría para usuario ID: {}", usuarioId);
-        return auditoriaRepository.findByUsuariosIdUsuarios(usuarioId, pageable);
+        return auditoriaRepository.findByUsuariosIdUsuarios(Math.toIntExact(usuarioId), pageable);
     }
 
     /**
@@ -295,11 +295,11 @@ public class AuditoriaService {
      * @return Número de accesos en el período
      */
     @Transactional(readOnly = true)
-    public long obtenerEstadisticasAcceso(Long usuarioId, int dias) {
+    public Integer obtenerEstadisticasAcceso(Integer usuarioId, int dias) {
         LocalDateTime fechaInicio = LocalDateTime.now().minusDays(dias);
         LocalDateTime fechaFin = LocalDateTime.now();
 
-        return auditoriaRepository.countByUsuarioAndFechaBetween(usuarioId, fechaInicio, fechaFin);
+        return auditoriaRepository.countByUsuarioAndFechaBetween(Math.toIntExact(usuarioId), fechaInicio, fechaFin);
     }
 
     /**
@@ -338,10 +338,10 @@ public class AuditoriaService {
         reporte.setTotalRegistros(registros.size());
 
         // Contar por tipo de proceso
-        long loginsExitosos = registros.stream().filter(r -> "LOGIN_EXITOSO".equals(r.getProceso())).count();
-        long loginsFallidos = registros.stream().filter(r -> "LOGIN_FALLIDO".equals(r.getProceso())).count();
-        long cambiosContrasena = registros.stream().filter(r -> r.getProceso().contains("CAMBIO_CONTRASENA")).count();
-        long operacionesCrud = registros.stream().filter(r -> r.getProceso().startsWith("CRUD_")).count();
+        Integer loginsExitosos = Math.toIntExact(registros.stream().filter(r -> "LOGIN_EXITOSO".equals(r.getProceso())).count());
+        Integer loginsFallidos = Math.toIntExact(registros.stream().filter(r -> "LOGIN_FALLIDO".equals(r.getProceso())).count());
+        Integer cambiosContrasena = Math.toIntExact(registros.stream().filter(r -> r.getProceso().contains("CAMBIO_CONTRASENA")).count());
+        Integer operacionesCrud = Math.toIntExact(registros.stream().filter(r -> r.getProceso().startsWith("CRUD_")).count());
 
         reporte.setLoginsExitosos(loginsExitosos);
         reporte.setLoginsFallidos(loginsFallidos);

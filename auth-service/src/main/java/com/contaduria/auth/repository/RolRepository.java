@@ -13,7 +13,7 @@ import java.util.Optional;
  * Repositorio para manejo de roles del sistema
  */
 @Repository
-public interface RolRepository extends JpaRepository<Rol, Long> {
+public interface RolRepository extends JpaRepository<Rol, Integer> {
 
     /**
      * Busca rol por nombre
@@ -55,11 +55,11 @@ public interface RolRepository extends JpaRepository<Rol, Long> {
      * @return Rol con permisos cargados
      */
     @Query("SELECT r FROM Rol r LEFT JOIN FETCH r.permisos p LEFT JOIN FETCH p.menu m WHERE r.idRoles = :rolId")
-    Optional<Rol> findRolConPermisos(@Param("rolId") Long rolId);
+    Optional<Rol> findRolConPermisos(@Param("rolId") Integer rolId);
 
     /**
      * Cuenta roles activos
      * @return Número total de roles activos
      */
-    long countByActivoTrue();
+    Integer countByActivoTrue();
 }

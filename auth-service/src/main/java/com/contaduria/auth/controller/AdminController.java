@@ -50,7 +50,7 @@ public class AdminController {
     @PostMapping("/desbloquear-usuario/{usuarioId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<String>> desbloquearUsuario(
-            @PathVariable Long usuarioId,
+            @PathVariable Integer usuarioId,
             @RequestHeader("Authorization") String authHeader) {
 
         logger.info("Solicitud de desbloqueo para usuario ID: {}", usuarioId);
@@ -65,7 +65,7 @@ public class AdminController {
                         .body(ApiResponse.errorAccesoDenegado("Permisos insuficientes"));
             }
 
-            authService.desbloquearCuenta(usuarioId);
+            authService.desbloquearCuenta(Math.toIntExact(usuarioId));
 
             return ResponseEntity.ok(
                     ApiResponse.exitoSinDatos("Usuario desbloqueado exitosamente")
@@ -88,7 +88,7 @@ public class AdminController {
     @GetMapping("/auditoria/usuario/{usuarioId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Page<Auditoria>>> obtenerAuditoriaUsuario(
-            @PathVariable Long usuarioId,
+            @PathVariable Integer usuarioId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestHeader("Authorization") String authHeader) {
@@ -106,7 +106,7 @@ public class AdminController {
             }
 
             Pageable pageable = PageRequest.of(page, size, Sort.by("fechaRegistro").descending());
-            Page<Auditoria> auditoria = auditoriaService.obtenerHistorialUsuario(usuarioId, pageable);
+            Page<Auditoria> auditoria = auditoriaService.obtenerHistorialUsuario(Math.toIntExact(usuarioId), pageable);
 
             return ResponseEntity.ok(
                     ApiResponse.exito(auditoria, "Historial de auditoría obtenido")

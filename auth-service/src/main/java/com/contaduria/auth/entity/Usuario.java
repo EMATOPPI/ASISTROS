@@ -24,11 +24,11 @@ public class Usuario implements UserDetails {
 
     @Id
     @Column(name = "idusuarios")
-    private Long idUsuarios;
+    private Integer idUsuarios;
 
     @Column(name = "idEmpleados", nullable = false)
     @NotNull(message = "El empleado es requerido")
-    private Long idEmpleados;
+    private Integer idEmpleados;
 
     @Column(name = "usuario", nullable = false, unique = true)
     @NotBlank(message = "El nombre de usuario es requerido")
@@ -72,7 +72,7 @@ public class Usuario implements UserDetails {
     // Constructores
     public Usuario() {}
 
-    public Usuario(String usuario, String contrasena, Long idEmpleados) {
+    public Usuario(String usuario, String contrasena, Integer idEmpleados) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.idEmpleados = idEmpleados;
@@ -154,11 +154,11 @@ public class Usuario implements UserDetails {
     }
 
     // Getters y Setters
-    public Long getIdUsuarios() { return idUsuarios; }
-    public void setIdUsuarios(Long idUsuarios) { this.idUsuarios = idUsuarios; }
+    public Integer getIdUsuarios() { return idUsuarios; }
+    public void setIdUsuarios(Integer idUsuarios) { this.idUsuarios = idUsuarios; }
 
-    public Long getIdEmpleados() { return idEmpleados; }
-    public void setIdEmpleados(Long idEmpleados) { this.idEmpleados = idEmpleados; }
+    public Integer getIdEmpleados() { return idEmpleados; }
+    public void setIdEmpleados(Integer idEmpleados) { this.idEmpleados = idEmpleados; }
 
     public String getUsuario() { return usuario; }
     public void setUsuario(String usuario) { this.usuario = usuario; }

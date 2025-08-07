@@ -15,7 +15,7 @@ import java.util.List;
  * Repositorio para manejo de registros de auditoría
  */
 @Repository
-public interface AuditoriaRepository extends JpaRepository<Auditoria, Long> {
+public interface AuditoriaRepository extends JpaRepository<Auditoria, Integer> {
 
     /**
      * Busca registros de auditoría por usuario
@@ -23,7 +23,7 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Long> {
      * @param pageable Información de paginación
      * @return Página de registros de auditoría
      */
-    Page<Auditoria> findByUsuariosIdUsuarios(Long usuarioId, Pageable pageable);
+    Page<Auditoria> findByUsuariosIdUsuarios(Integer usuarioId, Pageable pageable);
 
     /**
      * Busca registros por proceso específico
@@ -71,7 +71,7 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Long> {
      * @return Número de registros
      */
     @Query("SELECT COUNT(a) FROM Auditoria a WHERE a.usuariosIdUsuarios = :usuarioId AND a.fechaRegistro BETWEEN :fechaInicio AND :fechaFin")
-    long countByUsuarioAndFechaBetween(@Param("usuarioId") Long usuarioId,
+    Integer countByUsuarioAndFechaBetween(@Param("usuarioId") Integer usuarioId,
                                        @Param("fechaInicio") LocalDateTime fechaInicio,
                                        @Param("fechaFin") LocalDateTime fechaFin);
 
@@ -82,5 +82,5 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Long> {
      * @return Lista de últimos registros
      */
     @Query(value = "SELECT a FROM Auditoria a WHERE a.usuariosIdUsuarios = :usuarioId ORDER BY a.fechaRegistro DESC")
-    List<Auditoria> findUltimosRegistrosPorUsuario(@Param("usuarioId") Long usuarioId, Pageable pageable);
+    List<Auditoria> findUltimosRegistrosPorUsuario(@Param("usuarioId") Integer usuarioId, Pageable pageable);
 }

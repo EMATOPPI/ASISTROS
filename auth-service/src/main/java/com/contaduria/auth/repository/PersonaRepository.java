@@ -13,7 +13,7 @@ import java.util.Optional;
  * Repositorio para manejo de datos de personas
  */
 @Repository
-public interface PersonaRepository extends JpaRepository<Persona, Long> {
+public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     /**
      * Busca persona por número de CI

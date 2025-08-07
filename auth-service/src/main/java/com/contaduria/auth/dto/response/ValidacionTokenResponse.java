@@ -10,10 +10,10 @@ import java.util.List;
 public class ValidacionTokenResponse {
 
     private boolean valido;
-    private Long usuarioId;
+    private Integer usuarioId;
     private String usuario;
     private String nombreCompleto;
-    private Long empleadoId;
+    private Integer empleadoId;
     private List<String> roles;
     private List<String> permisos;
     private Boolean puedeVerTodosClientes;
@@ -28,8 +28,8 @@ public class ValidacionTokenResponse {
     }
 
     // Métodos estáticos para crear respuestas
-    public static ValidacionTokenResponse tokenValido(Long usuarioId, String usuario, String nombreCompleto,
-                                                      Long empleadoId, List<String> roles, List<String> permisos,
+    public static ValidacionTokenResponse tokenValido(Integer usuarioId, String usuario, String nombreCompleto,
+                                                      Integer empleadoId, List<String> roles, List<String> permisos,
                                                       Boolean puedeVerTodosClientes, LocalDateTime expiracion) {
         ValidacionTokenResponse response = new ValidacionTokenResponse(true);
         response.usuarioId = usuarioId;
@@ -53,8 +53,8 @@ public class ValidacionTokenResponse {
     public boolean isValido() { return valido; }
     public void setValido(boolean valido) { this.valido = valido; }
 
-    public Long getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(Long usuarioId) { this.usuarioId = usuarioId; }
+    public Integer getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(Integer usuarioId) { this.usuarioId = usuarioId; }
 
     public String getUsuario() { return usuario; }
     public void setUsuario(String usuario) { this.usuario = usuario; }
@@ -62,8 +62,8 @@ public class ValidacionTokenResponse {
     public String getNombreCompleto() { return nombreCompleto; }
     public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }
 
-    public Long getEmpleadoId() { return empleadoId; }
-    public void setEmpleadoId(Long empleadoId) { this.empleadoId = empleadoId; }
+    public Integer getEmpleadoId() { return empleadoId; }
+    public void setEmpleadoId(Integer empleadoId) { this.empleadoId = empleadoId; }
 
     public List<String> getRoles() { return roles; }
     public void setRoles(List<String> roles) { this.roles = roles; }

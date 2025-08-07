@@ -12,7 +12,7 @@ public class LoginResponse {
     private String accessToken;
     private String refreshToken;
     private String tipoToken = "Bearer";
-    private Long expiraEn;
+    private Integer expiraEn;
     private UsuarioResponse usuario;
     private List<String> roles;
     private List<MenuResponse> menusPermitidos;
@@ -23,7 +23,7 @@ public class LoginResponse {
         this.fechaLogin = LocalDateTime.now();
     }
 
-    public LoginResponse(String accessToken, String refreshToken, Long expiraEn, UsuarioResponse usuario) {
+    public LoginResponse(String accessToken, String refreshToken, Integer expiraEn, UsuarioResponse usuario) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.expiraEn = expiraEn;
@@ -41,8 +41,8 @@ public class LoginResponse {
     public String getTipoToken() { return tipoToken; }
     public void setTipoToken(String tipoToken) { this.tipoToken = tipoToken; }
 
-    public Long getExpiraEn() { return expiraEn; }
-    public void setExpiraEn(Long expiraEn) { this.expiraEn = expiraEn; }
+    public Integer getExpiraEn() { return expiraEn; }
+    public void setExpiraEn(Integer expiraEn) { this.expiraEn = expiraEn; }
 
     public UsuarioResponse getUsuario() { return usuario; }
     public void setUsuario(UsuarioResponse usuario) { this.usuario = usuario; }

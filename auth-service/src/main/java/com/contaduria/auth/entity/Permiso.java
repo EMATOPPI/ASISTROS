@@ -13,11 +13,11 @@ public class Permiso {
 
     @Id
     @Column(name = "idroles")
-    private Long idRoles;
+    private Integer idRoles;
 
     @Id
     @Column(name = "idmenus")
-    private Long idMenus;
+    private Integer idMenus;
 
     @Column(name = "ver")
     private Integer ver;
@@ -34,7 +34,7 @@ public class Permiso {
     // Constructores
     public Permiso() {}
 
-    public Permiso(Long idRoles, Long idMenus, Integer ver) {
+    public Permiso(Integer idRoles, Integer idMenus, Integer ver) {
         this.idRoles = idRoles;
         this.idMenus = idMenus;
         this.ver = ver;
@@ -46,11 +46,11 @@ public class Permiso {
     }
 
     // Getters y Setters
-    public Long getIdRoles() { return idRoles; }
-    public void setIdRoles(Long idRoles) { this.idRoles = idRoles; }
+    public Integer getIdRoles() { return idRoles; }
+    public void setIdRoles(Integer idRoles) { this.idRoles = idRoles; }
 
-    public Long getIdMenus() { return idMenus; }
-    public void setIdMenus(Long idMenus) { this.idMenus = idMenus; }
+    public Integer getIdMenus() { return idMenus; }
+    public void setIdMenus(Integer idMenus) { this.idMenus = idMenus; }
 
     public Integer getVer() { return ver; }
     public void setVer(Integer ver) { this.ver = ver; }

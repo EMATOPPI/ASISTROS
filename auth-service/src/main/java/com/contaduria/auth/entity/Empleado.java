@@ -16,15 +16,15 @@ public class Empleado {
 
     @Id
     @Column(name = "idempleados")
-    private Long idEmpleados;
+    private Integer idEmpleados;
 
     @Column(name = "personas_idpersonas", nullable = false)
     @NotNull(message = "La persona es requerida")
-    private Long personasIdPersonas;
+    private Integer personasIdPersonas;
 
     @Column(name = "cat_puestos_idpuestos", nullable = false)
     @NotNull(message = "El puesto es requerido")
-    private Long catPuestosIdPuestos;
+    private Integer catPuestosIdPuestos;
 
     @Column(name = "telefono", nullable = false)
     @NotNull(message = "El teléfono es requerido")
@@ -82,14 +82,14 @@ public class Empleado {
     }
 
     // Getters y Setters
-    public Long getIdEmpleados() { return idEmpleados; }
-    public void setIdEmpleados(Long idEmpleados) { this.idEmpleados = idEmpleados; }
+    public Integer getIdEmpleados() { return idEmpleados; }
+    public void setIdEmpleados(Integer idEmpleados) { this.idEmpleados = idEmpleados; }
 
-    public Long getPersonasIdPersonas() { return personasIdPersonas; }
-    public void setPersonasIdPersonas(Long personasIdPersonas) { this.personasIdPersonas = personasIdPersonas; }
+    public Integer getPersonasIdPersonas() { return personasIdPersonas; }
+    public void setPersonasIdPersonas(Integer personasIdPersonas) { this.personasIdPersonas = personasIdPersonas; }
 
-    public Long getCatPuestosIdPuestos() { return catPuestosIdPuestos; }
-    public void setCatPuestosIdPuestos(Long catPuestosIdPuestos) { this.catPuestosIdPuestos = catPuestosIdPuestos; }
+    public Integer getCatPuestosIdPuestos() { return catPuestosIdPuestos; }
+    public void setCatPuestosIdPuestos(Integer catPuestosIdPuestos) { this.catPuestosIdPuestos = catPuestosIdPuestos; }
 
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }

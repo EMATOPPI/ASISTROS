@@ -10,10 +10,10 @@ public class ReporteActividadResponse {
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFin;
     private Integer totalRegistros;
-    private Long loginsExitosos;
-    private Long loginsFallidos;
-    private Long cambiosContrasena;
-    private Long operacionesCrud;
+    private Integer loginsExitosos;
+    private Integer loginsFallidos;
+    private Integer cambiosContrasena;
+    private Integer operacionesCrud;
     private Double porcentajeExitoLogins;
 
     // Constructores
@@ -29,17 +29,17 @@ public class ReporteActividadResponse {
     public Integer getTotalRegistros() { return totalRegistros; }
     public void setTotalRegistros(Integer totalRegistros) { this.totalRegistros = totalRegistros; }
 
-    public Long getLoginsExitosos() { return loginsExitosos; }
-    public void setLoginsExitosos(Long loginsExitosos) { this.loginsExitosos = loginsExitosos; }
+    public Integer getLoginsExitosos() { return loginsExitosos; }
+    public void setLoginsExitosos(Integer loginsExitosos) { this.loginsExitosos = loginsExitosos; }
 
-    public Long getLoginsFallidos() { return loginsFallidos; }
-    public void setLoginsFallidos(Long loginsFallidos) { this.loginsFallidos = loginsFallidos; }
+    public Integer getLoginsFallidos() { return loginsFallidos; }
+    public void setLoginsFallidos(Integer loginsFallidos) { this.loginsFallidos = loginsFallidos; }
 
-    public Long getCambiosContrasena() { return cambiosContrasena; }
-    public void setCambiosContrasena(Long cambiosContrasena) { this.cambiosContrasena = cambiosContrasena; }
+    public Integer getCambiosContrasena() { return cambiosContrasena; }
+    public void setCambiosContrasena(Integer cambiosContrasena) { this.cambiosContrasena = cambiosContrasena; }
 
-    public Long getOperacionesCrud() { return operacionesCrud; }
-    public void setOperacionesCrud(Long operacionesCrud) { this.operacionesCrud = operacionesCrud; }
+    public Integer getOperacionesCrud() { return operacionesCrud; }
+    public void setOperacionesCrud(Integer operacionesCrud) { this.operacionesCrud = operacionesCrud; }
 
     public Double getPorcentajeExitoLogins() { return porcentajeExitoLogins; }
     public void setPorcentajeExitoLogins(Double porcentajeExitoLogins) { this.porcentajeExitoLogins = porcentajeExitoLogins; }

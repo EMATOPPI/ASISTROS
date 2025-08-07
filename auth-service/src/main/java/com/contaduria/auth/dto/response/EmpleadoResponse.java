@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class EmpleadoResponse {
 
-    private Long idEmpleados;
+    private Integer idEmpleados;
     private String telefono;
     private Integer estado;
     private LocalDate fechaDesde;
@@ -19,8 +19,8 @@ public class EmpleadoResponse {
     public EmpleadoResponse() {}
 
     // Getters y Setters
-    public Long getIdEmpleados() { return idEmpleados; }
-    public void setIdEmpleados(Long idEmpleados) { this.idEmpleados = idEmpleados; }
+    public Integer getIdEmpleados() { return idEmpleados; }
+    public void setIdEmpleados(Integer idEmpleados) { this.idEmpleados = idEmpleados; }
 
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }

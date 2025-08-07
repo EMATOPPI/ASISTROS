@@ -13,7 +13,7 @@ import java.util.Optional;
  * Repositorio para manejo de menús del sistema
  */
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Long> {
+public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     /**
      * Busca menús activos ordenados por orden
@@ -53,13 +53,13 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
             "JOIN r.usuarios u " +
             "WHERE u.idUsuarios = :usuarioId AND p.ver = 1 AND m.activo = true AND r.activo = true " +
             "ORDER BY m.orden")
-    List<Menu> findMenusAccesiblesPorUsuario(@Param("usuarioId") Long usuarioId);
+    List<Menu> findMenusAccesiblesPorUsuario(@Param("usuarioId") Integer usuarioId);
 
     /**
      * Cuenta menús activos
      * @return Número total de menús activos
      */
-    long countByActivoTrue();
+    Integer countByActivoTrue();
 
     /**
      * Verifica si existe un menú con la URL dada

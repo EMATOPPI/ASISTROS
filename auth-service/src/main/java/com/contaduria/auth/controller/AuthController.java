@@ -158,9 +158,9 @@ public class AuthController {
         try {
             // Extraer usuario ID del token
             String token = authHeader.substring(7);
-            Long usuarioId = jwtService.extraerUsuarioId(token);
+            Integer usuarioId = Math.toIntExact(jwtService.extraerUsuarioId(token));
 
-            authService.cambiarContrasena(usuarioId, request);
+            authService.cambiarContrasena(Math.toIntExact(usuarioId), request);
 
             return ResponseEntity.ok(
                     ApiResponse.exitoSinDatos("Contraseña cambiada exitosamente")
@@ -189,9 +189,9 @@ public class AuthController {
         try {
             // Extraer usuario ID del token
             String token = authHeader.substring(7);
-            Long usuarioId = jwtService.extraerUsuarioId(token);
+            Integer usuarioId = Math.toIntExact(jwtService.extraerUsuarioId(token));
 
-            PerfilUsuarioResponse perfil = authService.obtenerPerfil(usuarioId);
+            PerfilUsuarioResponse perfil = authService.obtenerPerfil(Math.toIntExact(usuarioId));
 
             return ResponseEntity.ok(
                     ApiResponse.exito(perfil, "Perfil obtenido exitosamente")
@@ -218,7 +218,7 @@ public class AuthController {
             // En una implementación completa, aquí se invalidaría el token
             // Por ahora, solo registramos en auditoría
             String token = authHeader.substring(7);
-            Long usuarioId = jwtService.extraerUsuarioId(token);
+            Integer usuarioId = Math.toIntExact(jwtService.extraerUsuarioId(token));
 
             // TODO: Implementar invalidación de tokens (blacklist, base de datos, etc.)
 
