@@ -12,7 +12,7 @@ public class EmpleadoResponse {
     private Integer estado;
     private LocalDate fechaDesde;
     private LocalDate fechaNac;
-    private Boolean verTodosClientes;
+    private int verTodosClientes;
     private PersonaResponse persona;
 
     // Constructores
@@ -34,8 +34,8 @@ public class EmpleadoResponse {
     public LocalDate getFechaNac() { return fechaNac; }
     public void setFechaNac(LocalDate fechaNac) { this.fechaNac = fechaNac; }
 
-    public Boolean getVerTodosClientes() { return verTodosClientes; }
-    public void setVerTodosClientes(Boolean verTodosClientes) { this.verTodosClientes = verTodosClientes; }
+    public int getVerTodosClientes() { return verTodosClientes; }
+    public void setVerTodosClientes(int verTodosClientes) { this.verTodosClientes = verTodosClientes; }
 
     public PersonaResponse getPersona() { return persona; }
     public void setPersona(PersonaResponse persona) { this.persona = persona; }

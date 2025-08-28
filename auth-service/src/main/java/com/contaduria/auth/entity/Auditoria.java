@@ -30,15 +30,15 @@ public class Auditoria {
     @Column(name = "fecha")
     private String fecha; // Mantenemos como String para compatibilidad
 
-    // Campos adicionales para mejor auditoría
-    @Column(name = "detalle")
-    private String detalle;
-
-    @Column(name = "ip_origen")
-    private String ipOrigen;
-
-    @Column(name = "fecha_registro")
-    private LocalDateTime fechaRegistro;
+//    // Campos adicionales para mejor auditoría
+//    @Column(name = "detalle")
+//    private String detalle;
+//
+//    @Column(name = "ip_origen")
+//    private String ipOrigen;
+//
+//    @Column(name = "fecha_registro")
+//    private LocalDateTime fechaRegistro;
 
     // Relación con usuario
     @ManyToOne(fetch = FetchType.LAZY)
@@ -47,7 +47,7 @@ public class Auditoria {
 
     // Constructores
     public Auditoria() {
-        this.fechaRegistro = LocalDateTime.now();
+//        this.fechaRegistro = LocalDateTime.now();
         this.fecha = LocalDateTime.now().toString(); // Para compatibilidad
     }
 
@@ -56,7 +56,7 @@ public class Auditoria {
         this.usuariosIdUsuarios = usuariosIdUsuarios;
         this.tabla = tabla;
         this.proceso = proceso;
-        this.detalle = detalle;
+//        this.detalle = detalle;
     }
 
     // Getters y Setters
@@ -75,14 +75,14 @@ public class Auditoria {
     public String getFecha() { return fecha; }
     public void setFecha(String fecha) { this.fecha = fecha; }
 
-    public String getDetalle() { return detalle; }
-    public void setDetalle(String detalle) { this.detalle = detalle; }
-
-    public String getIpOrigen() { return ipOrigen; }
-    public void setIpOrigen(String ipOrigen) { this.ipOrigen = ipOrigen; }
-
-    public LocalDateTime getFechaRegistro() { return fechaRegistro; }
-    public void setFechaRegistro(LocalDateTime fechaRegistro) { this.fechaRegistro = fechaRegistro; }
+//    public String getDetalle() { return detalle; }
+//    public void setDetalle(String detalle) { this.detalle = detalle; }
+//
+//    public String getIpOrigen() { return ipOrigen; }
+//    public void setIpOrigen(String ipOrigen) { this.ipOrigen = ipOrigen; }
+//
+//    public LocalDateTime getFechaRegistro() { return fechaRegistro; }
+//    public void setFechaRegistro(LocalDateTime fechaRegistro) { this.fechaRegistro = fechaRegistro; }
 
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }

@@ -48,8 +48,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla("usuarios");
             registro.setProceso("LOGIN_EXITOSO");
-            registro.setDetalle("Usuario: " + nombreUsuario + " - " + detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle("Usuario: " + nombreUsuario + " - " + detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -72,8 +72,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(Math.toIntExact(usuarioId != null ? usuarioId : 0L)); // 0 para usuarios no encontrados
             registro.setTabla("usuarios");
             registro.setProceso("LOGIN_FALLIDO");
-            registro.setDetalle("Usuario intentado: " + nombreUsuario + " - " + detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle("Usuario intentado: " + nombreUsuario + " - " + detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -95,8 +95,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla("usuarios");
             registro.setProceso("CAMBIO_CONTRASENA_EXITOSO");
-            registro.setDetalle(detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle(detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -118,8 +118,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla("usuarios");
             registro.setProceso("CAMBIO_CONTRASENA_FALLIDO");
-            registro.setDetalle(detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle(detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -141,8 +141,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla("usuarios");
             registro.setProceso("DESBLOQUEO_CUENTA");
-            registro.setDetalle(detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle(detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -164,8 +164,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla("usuarios");
             registro.setProceso("LOGOUT");
-            registro.setDetalle(detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle(detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -188,8 +188,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla("sistema");
             registro.setProceso("ACCESO_FUNCIONALIDAD");
-            registro.setDetalle("Funcionalidad: " + funcionalidad + " - " + detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle("Funcionalidad: " + funcionalidad + " - " + detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -214,8 +214,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(usuarioId);
             registro.setTabla(tabla);
             registro.setProceso("CRUD_" + operacion.toUpperCase());
-            registro.setDetalle("ID Entidad: " + entityId + " - " + detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle("ID Entidad: " + entityId + " - " + detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 
@@ -238,8 +238,8 @@ public class AuditoriaService {
             registro.setUsuariosIdUsuarios(Math.toIntExact(usuarioId != null ? usuarioId : 0L));
             registro.setTabla("sistema");
             registro.setProceso("ERROR_" + proceso.toUpperCase());
-            registro.setDetalle(detalle);
-            registro.setIpOrigen(obtenerIpCliente());
+//            registro.setDetalle(detalle);
+//            registro.setIpOrigen(obtenerIpCliente());
 
             auditoriaRepository.save(registro);
 

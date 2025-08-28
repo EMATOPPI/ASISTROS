@@ -42,20 +42,20 @@ public class UserService implements UserDetailsService {
 
         logger.debug("Usuario encontrado: {}", usuario.getUsuario());
         logger.debug("Estado activo: {}", usuario.getActivo());
-        logger.debug("Cuenta bloqueada: {}", usuario.getCuentaBloqueada());
+//        logger.debug("Cuenta bloqueada: {}", usuario.getCuentaBloqueada());
         logger.debug("Roles asignados: {}", usuario.getRoles().size());
 
         // Verificar estado de la cuenta
-        if (!usuario.getActivo()) {
-            logger.warn("Usuario inactivo: {}", username);
-            throw new UsernameNotFoundException("Usuario inactivo: " + username);
+        if (usuario.getActivo()) {
+            return usuario;
         }
+        logger.warn("Usuario inactivo: {}", username);
+        throw new UsernameNotFoundException("Usuario inactivo: " + username);
 
         // Log de roles para debugging
-        usuario.getRoles().forEach(rol ->
-                logger.debug("Rol: {} - Activo: {}", rol.getNombre(), rol.getActivo())
-        );
+//        usuario.getRoles().forEach(rol ->
+//                logger.debug("Rol: {} - Activo: {}", rol.getNombre(), rol.getActivo())
+//        );
 
-        return usuario;
     }
 }

@@ -50,16 +50,16 @@ public class Empleado {
     private LocalDate fechaNac;
 
     @Column(name = "calcularIps", nullable = false)
-    private Boolean calcularIps = false;
+    private int calcularIps = 0;
 
     @Column(name = "sobreMinimo", nullable = false)
     private Integer sobreMinimo = 0;
 
     @Column(name = "calcularAguinaldo")
-    private Boolean calcularAguinaldo = false;
+    private int calcularAguinaldo = 0;
 
     @Column(name = "verTodosClientes")
-    private Boolean verTodosClientes = false;
+    private int verTodosClientes = 0;
 
     // Relaciones
     @ManyToOne(fetch = FetchType.EAGER)
@@ -109,17 +109,17 @@ public class Empleado {
     public LocalDate getFechaNac() { return fechaNac; }
     public void setFechaNac(LocalDate fechaNac) { this.fechaNac = fechaNac; }
 
-    public Boolean getCalcularIps() { return calcularIps; }
-    public void setCalcularIps(Boolean calcularIps) { this.calcularIps = calcularIps; }
+    public int getCalcularIps() { return calcularIps; }
+    public void setCalcularIps(int calcularIps) { this.calcularIps = calcularIps; }
 
     public Integer getSobreMinimo() { return sobreMinimo; }
     public void setSobreMinimo(Integer sobreMinimo) { this.sobreMinimo = sobreMinimo; }
 
-    public Boolean getCalcularAguinaldo() { return calcularAguinaldo; }
-    public void setCalcularAguinaldo(Boolean calcularAguinaldo) { this.calcularAguinaldo = calcularAguinaldo; }
+    public int getCalcularAguinaldo() { return calcularAguinaldo; }
+    public void setCalcularAguinaldo(int calcularAguinaldo) { this.calcularAguinaldo = calcularAguinaldo; }
 
-    public Boolean getVerTodosClientes() { return verTodosClientes; }
-    public void setVerTodosClientes(Boolean verTodosClientes) { this.verTodosClientes = verTodosClientes; }
+    public int getVerTodosClientes() { return verTodosClientes; }
+    public void setVerTodosClientes(int verTodosClientes) { this.verTodosClientes = verTodosClientes; }
 
     public Persona getPersona() { return persona; }
     public void setPersona(Persona persona) { this.persona = persona; }

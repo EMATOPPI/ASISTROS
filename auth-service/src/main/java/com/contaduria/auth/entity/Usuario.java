@@ -41,20 +41,20 @@ public class Usuario implements UserDetails {
     private String contrasena;
 
     @Column(name = "activo", nullable = false)
-    private Boolean activo = false;
+    private int activo = 1;
 
-    // Campos adicionales para seguridad (agregar a BD si es necesario)
-    @Column(name = "ultimo_acceso")
-    private LocalDateTime ultimoAcceso;
-
-    @Column(name = "intentos_fallidos")
-    private Integer intentosFallidos = 0;
-
-    @Column(name = "cuenta_bloqueada")
-    private Boolean cuentaBloqueada = false;
-
-    @Column(name = "fecha_bloqueo")
-    private LocalDateTime fechaBloqueo;
+//    // Campos adicionales para seguridad (agregar a BD si es necesario)
+//    @Column(name = "ultimo_acceso")
+//    private LocalDateTime ultimoAcceso;
+//
+//    @Column(name = "intentos_fallidos")
+//    private Integer intentosFallidos = 0;
+//
+//    @Column(name = "cuenta_bloqueada")
+//    private Boolean cuentaBloqueada = false;
+//
+//    @Column(name = "fecha_bloqueo")
+//    private LocalDateTime fechaBloqueo;
 
     // Relaciones
     @ManyToOne(fetch = FetchType.EAGER)
@@ -76,7 +76,7 @@ public class Usuario implements UserDetails {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.idEmpleados = idEmpleados;
-        this.activo = true;
+        this.activo = 1;
     }
 
     // Implementación de UserDetails para Spring Security
@@ -104,8 +104,13 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !Boolean.TRUE.equals(cuentaBloqueada);
+        return false;
     }
+
+//    @Override
+////    public boolean isAccountNonLocked() {
+////        return !Boolean.TRUE.equals(cuentaBloqueada);
+////    }
 
     @Override
     public boolean isCredentialsNonExpired() {
@@ -118,26 +123,26 @@ public class Usuario implements UserDetails {
     }
 
     // Métodos de utilidad
-    public void registrarAccesoExitoso() {
-        this.ultimoAcceso = LocalDateTime.now();
-        this.intentosFallidos = 0;
-        this.cuentaBloqueada = false;
-        this.fechaBloqueo = null;
-    }
+//    public void registrarAccesoExitoso() {
+//        this.ultimoAcceso = LocalDateTime.now();
+//        this.intentosFallidos = 0;
+//        this.cuentaBloqueada = false;
+//        this.fechaBloqueo = null;
+//    }
 
-    public void registrarAccesoFallido() {
-        this.intentosFallidos = (this.intentosFallidos != null ? this.intentosFallidos : 0) + 1;
+//    public void registrarAccesoFallido() {
+//        this.intentosFallidos = (this.intentosFallidos != null ? this.intentosFallidos : 0) + 1;
+//
+//        // Bloquear cuenta después de 5 intentos fallidos
+//        if (this.intentosFallidos >= 5) {
+//            this.cuentaBloqueada = true;
+//            this.fechaBloqueo = LocalDateTime.now();
+//        }
+//    }
 
-        // Bloquear cuenta después de 5 intentos fallidos
-        if (this.intentosFallidos >= 5) {
-            this.cuentaBloqueada = true;
-            this.fechaBloqueo = LocalDateTime.now();
-        }
-    }
-
-    public boolean puedeAcceder() {
-        return Boolean.TRUE.equals(activo) && !Boolean.TRUE.equals(cuentaBloqueada);
-    }
+//    public boolean puedeAcceder() {
+//        return Boolean.TRUE.equals(activo) && !Boolean.TRUE.equals(cuentaBloqueada);
+//    }
 
     public String getNombreCompleto() {
         if (empleado != null && empleado.getPersona() != null) {
@@ -166,20 +171,20 @@ public class Usuario implements UserDetails {
     public String getContrasena() { return contrasena; }
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
 
-    public Boolean getActivo() { return activo; }
-    public void setActivo(Boolean activo) { this.activo = activo; }
+    public int getActivo() { return activo; }
+    public void setActivo(int activo) { this.activo = activo; }
 
-    public LocalDateTime getUltimoAcceso() { return ultimoAcceso; }
-    public void setUltimoAcceso(LocalDateTime ultimoAcceso) { this.ultimoAcceso = ultimoAcceso; }
-
-    public Integer getIntentosFallidos() { return intentosFallidos; }
-    public void setIntentosFallidos(Integer intentosFallidos) { this.intentosFallidos = intentosFallidos; }
-
-    public Boolean getCuentaBloqueada() { return cuentaBloqueada; }
-    public void setCuentaBloqueada(Boolean cuentaBloqueada) { this.cuentaBloqueada = cuentaBloqueada; }
-
-    public LocalDateTime getFechaBloqueo() { return fechaBloqueo; }
-    public void setFechaBloqueo(LocalDateTime fechaBloqueo) { this.fechaBloqueo = fechaBloqueo; }
+//    public LocalDateTime getUltimoAcceso() { return ultimoAcceso; }
+//    public void setUltimoAcceso(LocalDateTime ultimoAcceso) { this.ultimoAcceso = ultimoAcceso; }
+//
+//    public Integer getIntentosFallidos() { return intentosFallidos; }
+//    public void setIntentosFallidos(Integer intentosFallidos) { this.intentosFallidos = intentosFallidos; }
+//
+//    public Boolean getCuentaBloqueada() { return cuentaBloqueada; }
+//    public void setCuentaBloqueada(Boolean cuentaBloqueada) { this.cuentaBloqueada = cuentaBloqueada; }
+//
+//    public LocalDateTime getFechaBloqueo() { return fechaBloqueo; }
+//    public void setFechaBloqueo(LocalDateTime fechaBloqueo) { this.fechaBloqueo = fechaBloqueo; }
 
     public Empleado getEmpleado() { return empleado; }
     public void setEmpleado(Empleado empleado) { this.empleado = empleado; }

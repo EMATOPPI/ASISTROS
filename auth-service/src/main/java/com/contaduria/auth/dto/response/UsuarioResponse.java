@@ -13,11 +13,11 @@ public class UsuarioResponse {
     private String usuario;
     private String nombreCompleto;
     private String email;
-    private Boolean activo;
+    private int activo;
     private LocalDateTime ultimoAcceso;
     private EmpleadoResponse empleado;
     private List<String> roles;
-    private Boolean puedeVerTodosClientes;
+    private int puedeVerTodosClientes;
 
     // Constructores
     public UsuarioResponse() {}
@@ -35,8 +35,8 @@ public class UsuarioResponse {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    public Boolean getActivo() { return activo; }
-    public void setActivo(Boolean activo) { this.activo = activo; }
+    public int getActivo() { return activo; }
+    public void setActivo(int activo) { this.activo = activo; }
 
     public LocalDateTime getUltimoAcceso() { return ultimoAcceso; }
     public void setUltimoAcceso(LocalDateTime ultimoAcceso) { this.ultimoAcceso = ultimoAcceso; }
@@ -47,6 +47,6 @@ public class UsuarioResponse {
     public List<String> getRoles() { return roles; }
     public void setRoles(List<String> roles) { this.roles = roles; }
 
-    public Boolean getPuedeVerTodosClientes() { return puedeVerTodosClientes; }
-    public void setPuedeVerTodosClientes(Boolean puedeVerTodosClientes) { this.puedeVerTodosClientes = puedeVerTodosClientes; }
+    public int getPuedeVerTodosClientes() { return puedeVerTodosClientes; }
+    public void setPuedeVerTodosClientes(int puedeVerTodosClientes) { this.puedeVerTodosClientes = puedeVerTodosClientes; }
 }

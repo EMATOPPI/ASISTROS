@@ -16,14 +16,14 @@ public class ValidacionTokenResponse {
     private Integer empleadoId;
     private List<String> roles;
     private List<String> permisos;
-    private Boolean puedeVerTodosClientes;
+    private int puedeVerTodosClientes;
     private LocalDateTime expiracion;
     private String razonInvalido;
 
     // Constructores
     public ValidacionTokenResponse() {}
 
-    public ValidacionTokenResponse(boolean valido) {
+    public ValidacionTokenResponse(int valido) {
         this.valido = valido;
     }
 

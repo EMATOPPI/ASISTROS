@@ -68,21 +68,21 @@ public class AuthService {
                     .orElseThrow(() -> new BadCredentialsException("Usuario no encontrado"));
 
             // Verificar si la cuenta está activa
-            if (!usuario.puedeAcceder()) {
-                auditoriaService.registrarAccesoFallido((int) usuario.getIdUsuarios(),
-                        "Cuenta inactiva o bloqueada", request.getUsuario());
-
-                if (Boolean.TRUE.equals(usuario.getCuentaBloqueada())) {
-                    throw new LockedException("Cuenta bloqueada por múltiples intentos fallidos");
-                } else {
-                    throw new DisabledException("Cuenta desactivada");
-                }
-            }
+//            if (!usuario.puedeAcceder()) {
+//                auditoriaService.registrarAccesoFallido((int) usuario.getIdUsuarios(),
+//                        "Cuenta inactiva o bloqueada", request.getUsuario());
+//
+//                if (Boolean.TRUE.equals(usuario.getCuentaBloqueada())) {
+//                    throw new LockedException("Cuenta bloqueada por múltiples intentos fallidos");
+//                } else {
+//                    throw new DisabledException("Cuenta desactivada");
+//                }
+//            }
 
             // Validar contraseña
             if (!encriptacionService.validarContrasena(request.getContrasena(), usuario.getContrasena())) {
                 // Registrar intento fallido
-                usuario.registrarAccesoFallido();
+//                usuario.registrarAccesoFallido();
                 usuarioRepository.save(usuario);
 
                 auditoriaService.registrarAccesoFallido(usuario.getIdUsuarios(),
@@ -99,7 +99,7 @@ public class AuthService {
             }
 
             // Registrar acceso exitoso
-            usuario.registrarAccesoExitoso();
+//            usuario.registrarAccesoExitoso();
             usuarioRepository.save(usuario);
 
             // Generar tokens
@@ -156,9 +156,9 @@ public class AuthService {
             Usuario usuario = usuarioRepository.findById(Math.toIntExact(usuarioId))
                     .orElse(null);
 
-            if (usuario == null || !usuario.puedeAcceder()) {
-                return ValidacionTokenResponse.tokenInvalido("Usuario inactivo");
-            }
+//            if (usuario == null || !usuario.puedeAcceder()) {
+//                return ValidacionTokenResponse.tokenInvalido("Usuario inactivo");
+//            }
 
             return ValidacionTokenResponse.tokenValido(
                     usuarioId,
@@ -194,9 +194,9 @@ public class AuthService {
             Usuario usuarioEntity = usuarioRepository.findUsuarioCompletoByUsuario(usuario)
                     .orElseThrow(() -> new BadCredentialsException("Usuario no encontrado"));
 
-            if (!usuarioEntity.puedeAcceder()) {
-                throw new DisabledException("Usuario inactivo");
-            }
+//            if (!usuarioEntity.puedeAcceder()) {
+//                throw new DisabledException("Usuario inactivo");
+//            }
 
             // Generar nuevo access token
             String nuevoAccessToken = jwtService.generarTokenAcceso(usuarioEntity);
@@ -273,7 +273,7 @@ public class AuthService {
         perfil.setUsuario(mapearUsuarioResponse(usuario));
         perfil.setRoles(mapearRoles(usuario));
         perfil.setMenusPermitidos(obtenerMenusPermitidos(usuario));
-        perfil.setUltimaActividad(usuario.getUltimoAcceso());
+//        perfil.setUltimaActividad(usuario.getUltimoAcceso());
 
         return perfil;
     }
@@ -288,9 +288,9 @@ public class AuthService {
         Usuario usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        usuario.setCuentaBloqueada(false);
-        usuario.setIntentosFallidos(0);
-        usuario.setFechaBloqueo(null);
+//        usuario.setCuentaBloqueada(false);
+//        usuario.setIntentosFallidos(0);
+//        usuario.setFechaBloqueo(null);
 
         usuarioRepository.save(usuario);
 
@@ -309,7 +309,7 @@ public class AuthService {
         response.setNombreCompleto(usuario.getNombreCompleto());
         response.setEmail(usuario.getEmail());
         response.setActivo(usuario.getActivo());
-        response.setUltimoAcceso(usuario.getUltimoAcceso());
+//        response.setUltimoAcceso(usuario.getUltimoAcceso());
         response.setRoles(extraerRoles(usuario));
 
         if (usuario.getEmpleado() != null) {
@@ -362,8 +362,8 @@ public class AuthService {
                     RolResponse response = new RolResponse();
                     response.setIdRoles(rol.getIdRoles());
                     response.setNombre(rol.getNombre());
-                    response.setDescripcion(rol.getDescripcion());
-                    response.setActivo(rol.getActivo());
+//                    response.setDescripcion(rol.getDescripcion());
+//                    response.setActivo(rol.getActivo());
                     return response;
                 })
                 .collect(Collectors.toList());
@@ -378,10 +378,10 @@ public class AuthService {
                     MenuResponse response = new MenuResponse();
                     response.setIdMenus(menu.getIdMenus());
                     response.setNombre(menu.getNombre());
-                    response.setDescripcion(menu.getDescripcion());
-                    response.setUrl(menu.getUrl());
-                    response.setIcono(menu.getIcono());
-                    response.setOrden(menu.getOrden());
+//                    response.setDescripcion(menu.getDescripcion());
+//                    response.setUrl(menu.getUrl());
+//                    response.setIcono(menu.getIcono());
+//                    response.setOrden(menu.getOrden());
                     response.setPuedeVer(true);
                     return response;
                 })
