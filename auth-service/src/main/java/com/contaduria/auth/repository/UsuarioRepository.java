@@ -55,7 +55,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
      * Busca usuarios bloqueados
      * @return Lista de usuarios bloqueados
      */
-    List<Usuario> findByCuentaBloqueadaTrue();
+//    List<Usuario> findByCuentaBloqueadaTrue();
 
     /**
      * Consulta personalizada para obtener usuario con toda la información necesaria para autenticación
@@ -69,7 +69,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             "LEFT JOIN FETCH u.roles r " +
             "LEFT JOIN FETCH r.permisos perm " +
             "LEFT JOIN FETCH perm.menu m " +
-            "WHERE u.usuario = :usuario AND u.activo = true")
+            "WHERE u.usuario = :usuario AND u.activo = 1")
     Optional<Usuario> findUsuarioCompletoByUsuario(@Param("usuario") String usuario);
 
     /**
@@ -77,8 +77,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
      * @param intentos Número de intentos
      * @return Lista de usuarios con muchos intentos fallidos
      */
-    @Query("SELECT u FROM Usuario u WHERE u.intentosFallidos >= :intentos")
-    List<Usuario> findUsuariosConIntentosExcesivos(@Param("intentos") Integer intentos);
+//    @Query("SELECT u FROM Usuario u WHERE u.intentosFallidos >= :intentos")
+//    List<Usuario> findUsuariosConIntentosExcesivos(@Param("intentos") Integer intentos);
 
     /**
      * Busca usuarios que se han conectado en un rango de fechas
@@ -86,9 +86,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
      * @param fechaFin Fecha fin
      * @return Lista de usuarios conectados en el período
      */
-    @Query("SELECT u FROM Usuario u WHERE u.ultimoAcceso BETWEEN :fechaInicio AND :fechaFin")
-    List<Usuario> findUsuariosConectadosEnPeriodo(@Param("fechaInicio") LocalDateTime fechaInicio,
-                                                  @Param("fechaFin") LocalDateTime fechaFin);
+//    @Query("SELECT u FROM Usuario u WHERE u.ultimoAcceso BETWEEN :fechaInicio AND :fechaFin")
+//    List<Usuario> findUsuariosConectadosEnPeriodo(@Param("fechaInicio") LocalDateTime fechaInicio,
+//                                                  @Param("fechaFin") LocalDateTime fechaFin);
 
     /**
      * Cuenta usuarios activos
@@ -101,8 +101,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
      * @param fechaInicio Fecha inicio del bloqueo
      * @param fechaFin Fecha fin del bloqueo
      * @return Lista de usuarios bloqueados en el período
-     */
-    @Query("SELECT u FROM Usuario u WHERE u.cuentaBloqueada = true AND u.fechaBloqueo BETWEEN :fechaInicio AND :fechaFin")
-    List<Usuario> findUsuariosBloqueadosEnPeriodo(@Param("fechaInicio") LocalDateTime fechaInicio,
-                                                  @Param("fechaFin") LocalDateTime fechaFin);
+//     */
+//    @Query("SELECT u FROM Usuario u WHERE u.cuentaBloqueada = true AND u.fechaBloqueo BETWEEN :fechaInicio AND :fechaFin")
+//    List<Usuario> findUsuariosBloqueadosEnPeriodo(@Param("fechaInicio") LocalDateTime fechaInicio,
+//                                                  @Param("fechaFin") LocalDateTime fechaFin);
 }

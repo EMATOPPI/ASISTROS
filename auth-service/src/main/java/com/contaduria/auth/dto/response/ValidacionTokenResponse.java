@@ -23,14 +23,14 @@ public class ValidacionTokenResponse {
     // Constructores
     public ValidacionTokenResponse() {}
 
-    public ValidacionTokenResponse(int valido) {
+    public ValidacionTokenResponse(boolean valido) {
         this.valido = valido;
     }
 
     // Métodos estáticos para crear respuestas
     public static ValidacionTokenResponse tokenValido(Integer usuarioId, String usuario, String nombreCompleto,
                                                       Integer empleadoId, List<String> roles, List<String> permisos,
-                                                      Boolean puedeVerTodosClientes, LocalDateTime expiracion) {
+                                                      int puedeVerTodosClientes, LocalDateTime expiracion) {
         ValidacionTokenResponse response = new ValidacionTokenResponse(true);
         response.usuarioId = usuarioId;
         response.usuario = usuario;
@@ -71,8 +71,8 @@ public class ValidacionTokenResponse {
     public List<String> getPermisos() { return permisos; }
     public void setPermisos(List<String> permisos) { this.permisos = permisos; }
 
-    public Boolean getPuedeVerTodosClientes() { return puedeVerTodosClientes; }
-    public void setPuedeVerTodosClientes(Boolean puedeVerTodosClientes) { this.puedeVerTodosClientes = puedeVerTodosClientes; }
+    public int getPuedeVerTodosClientes() { return puedeVerTodosClientes; }
+    public void setPuedeVerTodosClientes(int puedeVerTodosClientes) { this.puedeVerTodosClientes = puedeVerTodosClientes; }
 
     public LocalDateTime getExpiracion() { return expiracion; }
     public void setExpiracion(LocalDateTime expiracion) { this.expiracion = expiracion; }

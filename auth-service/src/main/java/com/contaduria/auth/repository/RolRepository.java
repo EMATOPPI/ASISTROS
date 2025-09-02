@@ -26,14 +26,14 @@ public interface RolRepository extends JpaRepository<Rol, Integer> {
      * Busca roles activos
      * @return Lista de roles activos
      */
-    List<Rol> findByActivoTrue();
+//    List<Rol> findByActivoTrue();
 
     /**
      * Busca rol por nombre y que esté activo
      * @param nombre Nombre del rol
      * @return Rol activo encontrado o vacío
      */
-    Optional<Rol> findByNombreAndActivoTrue(String nombre);
+//    Optional<Rol> findByNombreAndActivoTrue(String nombre);
 
     /**
      * Verifica si existe un rol con el nombre dado
@@ -46,8 +46,8 @@ public interface RolRepository extends JpaRepository<Rol, Integer> {
      * Busca roles con sus permisos cargados
      * @return Lista de roles con permisos
      */
-    @Query("SELECT r FROM Rol r LEFT JOIN FETCH r.permisos p LEFT JOIN FETCH p.menu m WHERE r.activo = true")
-    List<Rol> findRolesActivosConPermisos();
+//    @Query("SELECT r FROM Rol r LEFT JOIN FETCH r.permisos p LEFT JOIN FETCH p.menu m WHERE r.activo = true")
+//    List<Rol> findRolesActivosConPermisos();
 
     /**
      * Busca rol específico con permisos cargados
@@ -61,5 +61,5 @@ public interface RolRepository extends JpaRepository<Rol, Integer> {
      * Cuenta roles activos
      * @return Número total de roles activos
      */
-    Integer countByActivoTrue();
+//    Integer countByActivoTrue();
 }

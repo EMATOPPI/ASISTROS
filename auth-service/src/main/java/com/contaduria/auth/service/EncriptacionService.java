@@ -22,7 +22,7 @@ public class EncriptacionService {
     private final BCryptPasswordEncoder bcryptEncoder;
 
     // Clave para el sistema anterior (debe coincidir con el existente)
-    private static final String CLAVE_ANTIGUA = "MiClaveSecreta123"; // Cambiar por la clave real
+    private static final String CLAVE_ANTIGUA = "password123"; // Cambiar por la clave real
     private static final String ALGORITMO_ANTIGUO = "AES";
 
     public EncriptacionService() {

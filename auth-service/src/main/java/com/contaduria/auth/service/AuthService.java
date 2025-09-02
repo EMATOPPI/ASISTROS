@@ -167,7 +167,7 @@ public class AuthService {
                     (Integer) info.get("empleadoId"),
                     (List<String>) info.get("roles"),
                     (List<String>) info.get("permisos"),
-                    (Boolean) info.get("puedeVerTodosClientes"),
+                    (int) info.get("puedeVerTodosClientes"),
                     (LocalDateTime) info.get("expiracion")
             );
 

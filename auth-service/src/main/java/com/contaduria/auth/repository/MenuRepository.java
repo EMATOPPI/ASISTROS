@@ -19,7 +19,7 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
      * Busca menús activos ordenados por orden
      * @return Lista de menús activos ordenados
      */
-    List<Menu> findByActivoTrueOrderByOrden();
+//    List<Menu> findByActivoTrueOrderByOrden();
 
     /**
      * Busca menú por nombre
@@ -33,14 +33,14 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
      * @param url URL del menú
      * @return Menú encontrado o vacío
      */
-    Optional<Menu> findByUrl(String url);
+//    Optional<Menu> findByUrl(String url);
 
     /**
      * Busca menús activos con sus permisos
      * @return Lista de menús con permisos cargados
      */
-    @Query("SELECT m FROM Menu m LEFT JOIN FETCH m.permisos p WHERE m.activo = true ORDER BY m.orden")
-    List<Menu> findMenusActivosConPermisos();
+//    @Query("SELECT m FROM Menu m LEFT JOIN FETCH m.permisos p WHERE m.activo = true ORDER BY m.orden")
+//    List<Menu> findMenusActivosConPermisos();
 
     /**
      * Busca menús accesibles por un usuario específico
@@ -51,27 +51,26 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
             "JOIN m.permisos p " +
             "JOIN p.rol r " +
             "JOIN r.usuarios u " +
-            "WHERE u.idUsuarios = :usuarioId AND p.ver = 1 AND m.activo = true AND r.activo = true " +
-            "ORDER BY m.orden")
+            "WHERE u.idUsuarios = :usuarioId AND p.ver = 1")
     List<Menu> findMenusAccesiblesPorUsuario(@Param("usuarioId") Integer usuarioId);
 
     /**
      * Cuenta menús activos
      * @return Número total de menús activos
-     */
-    Integer countByActivoTrue();
+//     */
+//    Integer countByActivoTrue();
 
     /**
      * Verifica si existe un menú con la URL dada
      * @param url URL a verificar
      * @return true si existe, false si no
      */
-    boolean existsByUrl(String url);
+//    boolean existsByUrl(String url);
 
     /**
      * Busca menús por orden específico
      * @param orden Orden a buscar
      * @return Lista de menús con ese orden
      */
-    List<Menu> findByOrden(Integer orden);
+//    List<Menu> findByOrden(Integer orden);
 }

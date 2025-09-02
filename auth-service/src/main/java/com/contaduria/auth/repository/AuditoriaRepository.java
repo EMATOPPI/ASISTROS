@@ -45,22 +45,22 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Integer> {
      * @param fechaFin Fecha fin
      * @return Lista de registros en el período
      */
-    @Query("SELECT a FROM Auditoria a WHERE a.fechaRegistro BETWEEN :fechaInicio AND :fechaFin ORDER BY a.fechaRegistro DESC")
-    List<Auditoria> findByFechaRegistroBetween(@Param("fechaInicio") LocalDateTime fechaInicio,
-                                               @Param("fechaFin") LocalDateTime fechaFin);
+//    @Query("SELECT a FROM Auditoria a WHERE a.fechaRegistro BETWEEN :fechaInicio AND :fechaFin ORDER BY a.fechaRegistro DESC")
+//    List<Auditoria> findByFechaRegistroBetween(@Param("fechaInicio") LocalDateTime fechaInicio,
+//                                               @Param("fechaFin") LocalDateTime fechaFin);
 
     /**
      * Busca registros de login exitosos
      * @return Lista de logins exitosos
      */
-    @Query("SELECT a FROM Auditoria a WHERE a.proceso = 'LOGIN_EXITOSO' ORDER BY a.fechaRegistro DESC")
-    List<Auditoria> findLoginsExitosos();
+//    @Query("SELECT a FROM Auditoria a WHERE a.proceso = 'LOGIN_EXITOSO' ORDER BY a.fechaRegistro DESC")
+//    List<Auditoria> findLoginsExitosos();
 
     /**
      * Busca registros de intentos fallidos
      * @return Lista de intentos fallidos
      */
-    @Query("SELECT a FROM Auditoria a WHERE a.proceso = 'LOGIN_FALLIDO' ORDER BY a.fechaRegistro DESC")
+    @Query("SELECT a FROM Auditoria a WHERE a.proceso = 'LOGIN_FALLIDO' ORDER BY a.idAuditoria DESC")
     List<Auditoria> findLoginsFallidos();
 
     /**
@@ -70,10 +70,10 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Integer> {
      * @param fechaFin Fecha fin
      * @return Número de registros
      */
-    @Query("SELECT COUNT(a) FROM Auditoria a WHERE a.usuariosIdUsuarios = :usuarioId AND a.fechaRegistro BETWEEN :fechaInicio AND :fechaFin")
-    Integer countByUsuarioAndFechaBetween(@Param("usuarioId") Integer usuarioId,
-                                       @Param("fechaInicio") LocalDateTime fechaInicio,
-                                       @Param("fechaFin") LocalDateTime fechaFin);
+//    @Query("SELECT COUNT(a) FROM Auditoria a WHERE a.usuariosIdUsuarios = :usuarioId AND a.fechaRegistro BETWEEN :fechaInicio AND :fechaFin")
+//    Integer countByUsuarioAndFechaBetween(@Param("usuarioId") Integer usuarioId,
+//                                       @Param("fechaInicio") LocalDateTime fechaInicio,
+//                                       @Param("fechaFin") LocalDateTime fechaFin);
 
     /**
      * Busca últimos registros por usuario
@@ -81,6 +81,6 @@ public interface AuditoriaRepository extends JpaRepository<Auditoria, Integer> {
      * @param limite Número máximo de registros
      * @return Lista de últimos registros
      */
-    @Query(value = "SELECT a FROM Auditoria a WHERE a.usuariosIdUsuarios = :usuarioId ORDER BY a.fechaRegistro DESC")
-    List<Auditoria> findUltimosRegistrosPorUsuario(@Param("usuarioId") Integer usuarioId, Pageable pageable);
+//    @Query(value = "SELECT a FROM Auditoria a WHERE a.usuariosIdUsuarios = :usuarioId ORDER BY a.fechaRegistro DESC")
+//    List<Auditoria> findUltimosRegistrosPorUsuario(@Param("usuarioId") Integer usuarioId, Pageable pageable);
 }

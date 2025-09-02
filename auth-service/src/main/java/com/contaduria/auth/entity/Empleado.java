@@ -78,7 +78,7 @@ public class Empleado {
     }
 
     public boolean puedeVerTodosLosClientes() {
-        return Boolean.TRUE.equals(verTodosClientes);
+        return verTodosClientes == 1;
     }
 
     // Getters y Setters

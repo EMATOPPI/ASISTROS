@@ -119,7 +119,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return Boolean.TRUE.equals(activo);
+        return activo == 1;
     }
 
     // Métodos de utilidad

@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
         logger.debug("Roles asignados: {}", usuario.getRoles().size());
 
         // Verificar estado de la cuenta
-        if (usuario.getActivo()) {
+        if (usuario.getActivo() == 1) {
             return usuario;
         }
         logger.warn("Usuario inactivo: {}", username);

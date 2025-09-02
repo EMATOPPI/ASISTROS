@@ -49,11 +49,11 @@ public interface PermisoRepository extends JpaRepository<Permiso, PermisoId> {
      * Busca todos los permisos activos con menús activos
      * @return Lista de permisos válidos
      */
-    @Query("SELECT p FROM Permiso p " +
-            "LEFT JOIN FETCH p.menu m " +
-            "LEFT JOIN FETCH p.rol r " +
-            "WHERE r.activo = true AND m.activo = true AND p.ver = 1")
-    List<Permiso> findPermisosActivos();
+//    @Query("SELECT p FROM Permiso p " +
+//            "LEFT JOIN FETCH p.menu m " +
+//            "LEFT JOIN FETCH p.rol r " +
+//            "WHERE r.activo = true AND m.activo = true AND p.ver = 1")
+//    List<Permiso> findPermisosActivos();
 
     /**
      * Verifica si un rol tiene permiso específico para un menú
@@ -71,6 +71,6 @@ public interface PermisoRepository extends JpaRepository<Permiso, PermisoId> {
      */
     @Query("SELECT DISTINCT p FROM Permiso p " +
             "LEFT JOIN FETCH p.menu m " +
-            "WHERE p.idRoles IN :rolesIds AND p.ver = 1 AND m.activo = true")
+            "WHERE p.idRoles IN :rolesIds AND p.ver = 1")
     List<Permiso> findPermisosByRoles(@Param("rolesIds") List<Integer> rolesIds);
 }

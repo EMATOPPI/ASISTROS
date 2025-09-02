@@ -282,11 +282,11 @@ public class AuditoriaService {
      * @param fechaFin Fecha fin
      * @return Lista de registros
      */
-    @Transactional(readOnly = true)
-    public List<Auditoria> obtenerRegistrosPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
-        logger.debug("Obteniendo registros de auditoría entre {} y {}", fechaInicio, fechaFin);
-        return auditoriaRepository.findByFechaRegistroBetween(fechaInicio, fechaFin);
-    }
+//    @Transactional(readOnly = true)
+//    public List<Auditoria> obtenerRegistrosPorFecha(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+//        logger.debug("Obteniendo registros de auditoría entre {} y {}", fechaInicio, fechaFin);
+//        return auditoriaRepository.findByFechaRegistroBetween(fechaInicio, fechaFin);
+//    }
 
     /**
      * Obtiene estadísticas de acceso de un usuario
@@ -294,22 +294,22 @@ public class AuditoriaService {
      * @param dias Número de días hacia atrás
      * @return Número de accesos en el período
      */
-    @Transactional(readOnly = true)
-    public Integer obtenerEstadisticasAcceso(Integer usuarioId, int dias) {
-        LocalDateTime fechaInicio = LocalDateTime.now().minusDays(dias);
-        LocalDateTime fechaFin = LocalDateTime.now();
-
-        return auditoriaRepository.countByUsuarioAndFechaBetween(Math.toIntExact(usuarioId), fechaInicio, fechaFin);
-    }
+//    @Transactional(readOnly = true)
+//    public Integer obtenerEstadisticasAcceso(Integer usuarioId, int dias) {
+//        LocalDateTime fechaInicio = LocalDateTime.now().minusDays(dias);
+//        LocalDateTime fechaFin = LocalDateTime.now();
+//
+//        return auditoriaRepository.countByUsuarioAndFechaBetween(Math.toIntExact(usuarioId), fechaInicio, fechaFin);
+//    }
 
     /**
      * Obtiene los últimos logins exitosos del sistema
      * @return Lista de últimos logins exitosos
      */
-    @Transactional(readOnly = true)
-    public List<Auditoria> obtenerUltimosLoginsExitosos() {
-        return auditoriaRepository.findLoginsExitosos();
-    }
+//    @Transactional(readOnly = true)
+//    public List<Auditoria> obtenerUltimosLoginsExitosos() {
+//        return auditoriaRepository.findLoginsExitosos();
+//    }
 
     /**
      * Obtiene los últimos intentos fallidos del sistema
@@ -330,29 +330,29 @@ public class AuditoriaService {
     public ReporteActividadResponse generarReporteActividad(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         logger.info("Generando reporte de actividad entre {} y {}", fechaInicio, fechaFin);
 
-        List<Auditoria> registros = auditoriaRepository.findByFechaRegistroBetween(fechaInicio, fechaFin);
+//        List<Auditoria> registros = auditoriaRepository.findByFechaRegistroBetween(fechaInicio, fechaFin);
 
         ReporteActividadResponse reporte = new ReporteActividadResponse();
         reporte.setFechaInicio(fechaInicio);
         reporte.setFechaFin(fechaFin);
-        reporte.setTotalRegistros(registros.size());
+//        reporte.setTotalRegistros(registros.size());
 
-        // Contar por tipo de proceso
-        Integer loginsExitosos = Math.toIntExact(registros.stream().filter(r -> "LOGIN_EXITOSO".equals(r.getProceso())).count());
-        Integer loginsFallidos = Math.toIntExact(registros.stream().filter(r -> "LOGIN_FALLIDO".equals(r.getProceso())).count());
-        Integer cambiosContrasena = Math.toIntExact(registros.stream().filter(r -> r.getProceso().contains("CAMBIO_CONTRASENA")).count());
-        Integer operacionesCrud = Math.toIntExact(registros.stream().filter(r -> r.getProceso().startsWith("CRUD_")).count());
+//        // Contar por tipo de proceso
+//        Integer loginsExitosos = Math.toIntExact(registros.stream().filter(r -> "LOGIN_EXITOSO".equals(r.getProceso())).count());
+//        Integer loginsFallidos = Math.toIntExact(registros.stream().filter(r -> "LOGIN_FALLIDO".equals(r.getProceso())).count());
+//        Integer cambiosContrasena = Math.toIntExact(registros.stream().filter(r -> r.getProceso().contains("CAMBIO_CONTRASENA")).count());
+//        Integer operacionesCrud = Math.toIntExact(registros.stream().filter(r -> r.getProceso().startsWith("CRUD_")).count());
 
-        reporte.setLoginsExitosos(loginsExitosos);
-        reporte.setLoginsFallidos(loginsFallidos);
-        reporte.setCambiosContrasena(cambiosContrasena);
-        reporte.setOperacionesCrud(operacionesCrud);
-
-        // Calcular porcentaje de éxito
-        if (loginsExitosos + loginsFallidos > 0) {
-            double porcentajeExito = (double) loginsExitosos / (loginsExitosos + loginsFallidos) * 100;
-            reporte.setPorcentajeExitoLogins(porcentajeExito);
-        }
+//        reporte.setLoginsExitosos(loginsExitosos);
+//        reporte.setLoginsFallidos(loginsFallidos);
+//        reporte.setCambiosContrasena(cambiosContrasena);
+//        reporte.setOperacionesCrud(operacionesCrud);
+//
+//        // Calcular porcentaje de éxito
+//        if (loginsExitosos + loginsFallidos > 0) {
+//            double porcentajeExito = (double) loginsExitosos / (loginsExitosos + loginsFallidos) * 100;
+//            reporte.setPorcentajeExitoLogins(porcentajeExito);
+//        }
 
         return reporte;
     }
